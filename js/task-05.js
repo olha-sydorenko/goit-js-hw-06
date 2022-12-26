@@ -1,4 +1,6 @@
 const textInput = document.querySelector('#name-input');
+const textOutput = document.querySelector('#name-output');
 textInput.addEventListener('input', event => {
-  document.querySelector('#name-output').textContent = event.currentTarget.value;
+  textOutput.textContent =
+    event.currentTarget.value !== '' ? event.currentTarget.value : 'Anonymus';
 });
