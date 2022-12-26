@@ -1,37 +1,54 @@
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+//Створи функцію createBoxes(amount), яка приймає один параметр - число. Функція створює стільки <div>, скільки вказано в amount і додає їх у div#boxes.
 
-const boxes = document.querySelector('#boxes');
+// Розміри найпершого <div> - 30px на 30px.
+// Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
+// Всі елементи повинні мати випадковий колір фону у форматі HEX. Використовуй готову функцію getRandomHexColor для отримання кольору.
 
 const controls = document.querySelector('#controls');
-let quantity;
-controls.firstElementChild.addEventListener('input', event => {
-  quantity = event.currentTarget.value;
-});
-
 const createBtn = document.querySelector('[data-create]');
-createBtn.addEventListener('click', oncreateBtnClick);
+const box = document.querySelector('.box');
 
-function oncreateBtnClick(event) {
-  let markup = '';
-  for (let i = 1; i <= quantity; i += 1) {
-    markup += `<div class="box"></div>`;
-  }
-  boxes.insertAdjacentHTML('beforeend', markup);
-  styleBoxes();
-}
-function styleBoxes() {
-  const arrayOfBoxes = document.querySelectorAll('.box');
+createBtn.addEventListener('click', createBoxes);
 
-    arrayOfBoxes.forEach(box => {
-      box.style.backgroundColor = getRandomHexColor();
-      box.style.width = '30px';
-      box.style.height = '30px';
-    });
-}
+function createBoxes(amount){
+    amount = controls.firstElementChild.value;
+    const arrOfBoxes = [];
+    let width = 20;
+    let height = 20;
+    
+      for (let i = 0; i < amount; i += 1) {
+        const box = document.createElement('div');
+    box.style.width = (width+=10) + 'px';
+    box.style.height = (height+=10) + 'px';
+    box.style.backgroundColor = getRandomHexColor();
+    arrOfBoxes.push(box);
+      }  
+  boxes.append(...arrOfBoxes);
+  console.log(arrOfBoxes.length);
+    }
 
-const destroyBtn = document.querySelector('[data-destroy]');
-destroyBtn.addEventListener('click', () => {
-  boxes.innerHTML = '';
-});
+    const destroyBtn = document.querySelector('[data-destroy]');
+    function destroyBoxes () {
+      boxes.innerHTML = '';
+      controls.firstElementChild.value = '';
+    }
+    
+    destroyBtn.addEventListener('click', destroyBoxes)
+
+// function createBoxes(amount){
+//   amount = controls.firstElementChild.value;
+//   let markup = '';
+// 
+//     for (let i = 1; i <= amount; i += 1) {
+//       markup += `<div style="color:blue; width:30px; width:30px;"></div>`;
+//     }
+    
+// boxes.insertAdjacentHTML('beforeend', markup);
+//   }
+
+
+
+
