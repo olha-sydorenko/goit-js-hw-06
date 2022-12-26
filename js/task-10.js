@@ -24,7 +24,6 @@ function oncreateBtnClick(event) {
 function styleBoxes() {
   const arrayOfBoxes = document.querySelectorAll('.box');
 
-  for (let i = 0; i < arrayOfBoxes.length; i += 1)
     arrayOfBoxes.forEach(box => {
       box.style.backgroundColor = getRandomHexColor();
       box.style.width = '30px';
