@@ -27,7 +27,6 @@ function createBoxes(amount){
     arrOfBoxes.push(box);
       }  
   boxes.append(...arrOfBoxes);
-  console.log(arrOfBoxes.length);
     }
 
     const destroyBtn = document.querySelector('[data-destroy]');
